@@ -5,6 +5,8 @@
     { "name": "HTML/CSS", "skillPoint": "4" },
     { "name": "Bootstrap", "skillPoint": "4" },
     { "name": "Python", "skillPoint": "2" },
+    { "name": "Unity", "skillPoint": "2" },
+    { "name": "Vue.js", "skillPoint": "1" },
     { "name": "C#", "skillPoint": "3" }
   ]
 }
