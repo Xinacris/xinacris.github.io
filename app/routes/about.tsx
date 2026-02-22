@@ -4,7 +4,7 @@ import { faCircle as faCircleSolid } from "@fortawesome/free-solid-svg-icons";
 import type { Route } from "./+types/about";
 import skillsData from "../../public/assets/skills.json";
 
-export async function loader() {
+export async function clientLoader() {
     return { skillPoints: [skillsData] };
 }
 

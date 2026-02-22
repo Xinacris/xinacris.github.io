@@ -1,7 +1,7 @@
 import type { Route } from "./+types/experience";
 import experiencesData from "../../public/assets/experiences.json";
 
-export async function loader() {
+export async function clientLoader() {
     return { experiences: [experiencesData] };
 }
 

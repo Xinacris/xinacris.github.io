@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import ppImage from "../../public/assets/pp.png";
 
-export async function loader() {
+export async function clientLoader() {
   const response = await fetch("https://api.github.com/users/xinacris");
   if (!response.ok) {
     throw new Error("Failed to fetch Github data");
