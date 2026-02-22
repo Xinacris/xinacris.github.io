@@ -1,87 +1,70 @@
-# Welcome to React Router!
+# Mustafa Ali Eren Portfolio
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Personal portfolio website built with modern web technologies, showcasing projects, skills, and experiences. This project was recently migrated from Angular to a high-performance **React Router v7** (Vite-based) Single Page Application.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 🚀 Tech Stack
 
-## Features
+- **Framework:** [React Router v7](https://reactrouter.com/) (SPA Mode)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Icons:** [FontAwesome (React)](https://fontawesome.com/)
+- **API:** Dynamic GitHub Profile Data integration
+- **Deployment:** GitHub Actions & GitHub Pages
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## ✨ Key Features
 
-## Getting Started
+- **Pop-out Mascot Design:** A unique, overlapping character design on the home page for a premium visual feel.
+- **Dynamic Content:** Automatic fetching of GitHub profile statistics and details.
+- **Data-Driven Sections:** Skills and Experience sections are driven by clean JSON structures for easy updates.
+- **Dark Theme:** Sleek, modern dark aesthetic matching professional developer environments.
+- **Responsive Layout:** Fully optimized for mobile, tablet, and desktop viewports.
 
-### Installation
+## 🛠️ Getting Started
 
-Install the dependencies:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Xinacris/xinacris.github.io.git
+   ```
 
-```bash
-npm install
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### Development
+3. **Start development server:**
+   ```bash
+   npm run dev
+   ```
 
-Start the development server with HMR:
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-```bash
-npm run dev
-```
+## 📦 Project Structure
 
-Your application will be available at `http://localhost:5173`.
+- `app/routes/`: Contains page components (Home, About, Experience).
+- `app/components/`: Reusable UI elements like Header and Footer.
+- `public/assets/`: Centralized assets including profile images and JSON data files.
+- `.github/workflows/`: Automated CI/CD pipeline for GitHub Pages deployment.
 
-## Building for Production
+## 🚢 Deployment
 
-Create a production build:
+The project uses **GitHub Actions** to automatically build and deploy to the `gh-pages` branch on every push to `master`.
 
-```bash
-npm run build
-```
+### GitHub Pages Setup Instructions:
 
-## Deployment
+1.  **Push to Master:** Ensure your latest code is on the `master` branch.
+2.  **Wait for Action:** Go to the **Actions** tab in your repository and wait for the "Deploy to GitHub Pages" workflow to complete.
+3.  **Configure Settings:**
+    -   Go to **Settings** -> **Pages**.
+    -   Under **Build and deployment** > **Branch**, change the branch from `master` to **`gh-pages`**.
+    -   Click **Save**.
+4.  **Visit Site:** Your site will be live at `https://xinacris.github.io` within a minute.
 
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+> [!TIP]
+> Since this is a Single Page Application (SPA), the deployment automatically includes a `404.html` fallback to support direct navigation to sub-pages like `/about`.
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ by Mustafa Ali Eren.
