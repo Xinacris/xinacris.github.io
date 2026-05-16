@@ -10,6 +10,32 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+export const meta: Route.MetaFunction = () => [
+  { title: "Mustafa Ali Eren — Frontend Developer" },
+  {
+    name: "description",
+    content:
+      "Personal site of Mustafa Ali Eren, a Frontend Developer with 3+ years of production experience in React and TypeScript.",
+  },
+  { name: "author", content: "Mustafa Ali Eren" },
+  { name: "keywords", content: "frontend developer, react, typescript, tailwind, storybook, next.js" },
+  { property: "og:title", content: "Mustafa Ali Eren — Frontend Developer" },
+  {
+    property: "og:description",
+    content:
+      "Frontend Developer with 3+ years shipping React + TypeScript across fintech products at Papara. Available for remote or Istanbul-based roles.",
+  },
+  { property: "og:type", content: "website" },
+  { property: "og:url", content: "https://xinacris.github.io" },
+  { name: "twitter:card", content: "summary" },
+  { name: "twitter:creator", content: "@zehirlibrowni" },
+  { name: "twitter:title", content: "Mustafa Ali Eren — Frontend Developer" },
+  {
+    name: "twitter:description",
+    content: "Frontend Developer with 3+ years of production experience in React + TypeScript.",
+  },
+];
+
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -19,15 +45,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-  {
-    rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined",
   },
 ];
 
@@ -44,9 +62,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <div className="containerContent min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col">
           <Header />
-          <div className="content flex-grow">
+          <div className="flex-grow">
             {children}
           </div>
           <Footer />
@@ -79,11 +97,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="p-8 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-2">{message}</h1>
+      <p className="text-gray-600 mb-4">{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="w-full p-4 overflow-x-auto bg-gray-100 text-sm">
           <code>{stack}</code>
         </pre>
       )}

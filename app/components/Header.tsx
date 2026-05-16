@@ -2,69 +2,66 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 
 export default function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+  return (
+    <nav className="bg-[#27282c] border-b border-[#3c3d41] px-6 py-3 flex justify-between items-center relative">
+      <Link
+        to="/"
+        onClick={() => setIsMenuOpen(false)}
+        className="text-sm font-bold tracking-widest uppercase text-[#e8e5de] hover:no-underline"
+      >
+        Mustafa Ali Eren
+      </Link>
 
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-    };
+      {/* Desktop nav */}
+      <div className="hidden sm:flex gap-6 text-xs tracking-widest uppercase">
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `transition-colors ${isActive ? "text-[#e8e5de] font-bold" : "text-[#888] hover:text-[#e8e5de]"}`
+          }
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/experience"
+          className={({ isActive }) =>
+            `transition-colors ${isActive ? "text-[#e8e5de] font-bold" : "text-[#888] hover:text-[#e8e5de]"}`
+          }
+        >
+          Experience
+        </NavLink>
+      </div>
 
-    return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-[#212529] uppercase py-2 px-4 flex justify-between items-center relative">
-            <div className="flex items-center">
-                <Link to="/" className="text-white text-xl font-medium mr-8" onClick={closeMenu}>
-                    Mustafa Ali Eren
-                </Link>
-                <div className="hidden lg:flex space-x-4">
-                    <NavLink
-                        to="/about"
-                        className={({ isActive }) =>
-                            `nav-item nav-link text-gray-400 hover:text-white transition-colors ${isActive ? "text-white" : ""}`
-                        }
-                    >
-                        About Me
-                    </NavLink>
-                    <NavLink
-                        to="/experience"
-                        className={({ isActive }) =>
-                            `nav-item nav-link text-gray-400 hover:text-white transition-colors ${isActive ? "text-white" : ""}`
-                        }
-                    >
-                        Experiences
-                    </NavLink>
-                </div>
-            </div>
+      {/* Mobile toggle */}
+      <button
+        className="sm:hidden text-xs tracking-widest uppercase text-[#888]"
+        onClick={() => setIsMenuOpen((v) => !v)}
+        aria-label="Toggle menu"
+      >
+        {isMenuOpen ? "close" : "menu"}
+      </button>
 
-            <button
-                className="lg:hidden text-white p-2 focus:outline-none"
-                onClick={toggleMenu}
-                aria-label="Toggle menu"
-            >
-                <span className="material-symbols-outlined text-3xl">menu</span>
-            </button>
-
-            {/* Mobile Menu */}
-            {isMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-[#212529] lg:hidden z-50 flex flex-col items-end px-4 pb-4">
-                    <NavLink
-                        to="/about"
-                        className="text-gray-400 hover:text-white py-2"
-                        onClick={closeMenu}
-                    >
-                        About Me
-                    </NavLink>
-                    <NavLink
-                        to="/experience"
-                        className="text-gray-400 hover:text-white py-2"
-                        onClick={closeMenu}
-                    >
-                        Experiences
-                    </NavLink>
-                </div>
-            )}
-        </nav>
-    );
+      {/* Mobile dropdown */}
+      {isMenuOpen && (
+        <div className="absolute top-full left-0 w-full bg-[#27282c] border-b border-[#3c3d41] flex flex-col px-6 pb-4 pt-2 z-50 sm:hidden">
+          <NavLink
+            to="/about"
+            className="py-1 text-xs tracking-widest uppercase text-[#888] hover:text-[#e8e5de]"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/experience"
+            className="py-1 text-xs tracking-widest uppercase text-[#888] hover:text-[#e8e5de]"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Experience
+          </NavLink>
+        </div>
+      )}
+    </nav>
+  );
 }
