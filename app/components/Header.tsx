@@ -32,6 +32,14 @@ export default function Header() {
         >
           Experience
         </NavLink>
+        <NavLink
+          to="/projects"
+          className={({ isActive }) =>
+            `transition-colors ${isActive ? "text-[#e8e5de] font-bold" : "text-[#888] hover:text-[#e8e5de]"}`
+          }
+        >
+          Projects
+        </NavLink>
       </div>
 
       {/* Mobile toggle */}
@@ -59,6 +67,13 @@ export default function Header() {
             onClick={() => setIsMenuOpen(false)}
           >
             Experience
+          </NavLink>
+          <NavLink
+            to="/projects"
+            className="py-1 text-xs tracking-widest uppercase text-[#888] hover:text-[#e8e5de]"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Projects
           </NavLink>
         </div>
       )}

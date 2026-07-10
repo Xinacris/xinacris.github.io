@@ -39,25 +39,6 @@ const workExperience = [
   },
 ];
 
-const projects = [
-  {
-    name: "Where to Watch",
-    stack: "React",
-    status: "live",
-    url: "https://xinnyswheheretoowatch.netlify.app/",
-    description:
-      "React SPA querying a public streaming availability API — lets users find which platforms carry a title across regions; no backend dependency",
-  },
-  {
-    name: "Idle RPG",
-    stack: "React Native",
-    status: "WIP",
-    url: undefined,
-    description:
-      "Mobile idle game with a deep passive skill tree and near-infinite build combinations — independently designing all game systems, UI, and progression loops",
-  },
-];
-
 const references = [
   { name: "Onur Yilmaz", title: "Lead Web Engineer, Paribu" },
   { name: "Caner Aa", title: "Senior SWE Frontend, Insider One" },
@@ -87,36 +68,6 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Personal Projects */}
-      <div className="doc-surface rounded-sm p-8">
-        <h2 className="section-label">Personal Projects</h2>
-        <div className="space-y-6">
-          {projects.map((p, i) => (
-            <div key={i}>
-              <div className="flex items-baseline gap-2 mb-1">
-                {p.url ? (
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-bold text-[#e8e5de] hover:underline"
-                  >
-                    {p.name}
-                  </a>
-                ) : (
-                  <span className="text-sm font-bold text-[#e8e5de]">{p.name}</span>
-                )}
-                <span className="text-xs text-[#888]">{p.stack}</span>
-                <span className="text-xs border border-[#3c3d41] px-1.5 text-[#888]">{p.status}</span>
-              </div>
-              <div className="bullet-item">
-                <span className="text-sm text-[#e8e5de]">{p.description}</span>
-              </div>
             </div>
           ))}
         </div>
