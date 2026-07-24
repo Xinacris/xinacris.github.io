@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import ppImage from "../../public/assets/pp.png";
+import avatarImage from "../../public/assets/avatar.png";
 
 export async function clientLoader() {
   const response = await fetch("https://api.github.com/users/xinacris");
@@ -29,26 +29,26 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className="px-4 py-10 max-w-3xl mx-auto">
-      <div className="doc-surface rounded-sm p-8 pt-0">
+      <div className="doc-surface rounded-sm p-8 pt-0 mt-4 sm:mt-20">
 
         {/* Avatar pop-out */}
         <div className="flex justify-center">
-          <div className="relative -top-10">
+          <div className="relative -top-10 w-48 sm:w-64">
             <img
-              src={ppImage}
+              src={avatarImage}
               alt="Mustafa Ali Eren"
-              className="w-28 h-28 rounded-full border-4 border-[#27282c] shadow-lg object-cover"
+              className="w-full h-auto"
             />
           </div>
         </div>
 
         {/* Name + title */}
-        <div className="text-center mb-6 -mt-2">
+        <div className="text-center mb-6 mt-2">
           <h1 className="text-xl font-bold tracking-widest uppercase text-[#e8e5de]">
             {profile.name ?? "Mustafa Ali Eren"}
           </h1>
           <p className="text-xs tracking-[0.2em] uppercase text-[#888] mt-1">
-            Frontend Developer &nbsp;·&nbsp; Available
+            Frontend Developer &nbsp;·&nbsp; <span className="text-[#8fbf8f]">Available</span>
           </p>
         </div>
 
