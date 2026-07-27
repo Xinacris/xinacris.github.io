@@ -43,6 +43,14 @@ const projects = [
     description:
       "Bilingual (TR/EN) character builder for D&D 5e and 5.5e — models the full character sheet (ability scores, class and race modifiers, spell slots, proficiencies) entirely client-side with no backend. Characters persist in browser storage with export/import for backup. Built to turn a rule-dense, edge-case-heavy domain into a clean, fast character creation flow",
   },
+  {
+    name: "Project Lumen",
+    stack: "React · Three.js · GSAP",
+    status: "live",
+    url: "https://projectlumenportfolio.netlify.app/",
+    description:
+      "Built a cinematic, scroll-driven portfolio for a fictional creative studio. A WebGL particle system (Three.js) powers the hero — 5,000+ particles animate on idle and respond to scroll progress in real time, with full mobile support. GSAP ScrollTrigger drives the project reveal sequence, synced frame-by-frame to scroll position. Content is fetched from a headless CMS REST API (Payload-style) with a static fallback that keeps the experience intact when the API is unavailable",
+  },
 ];
 
 export default function Projects() {
