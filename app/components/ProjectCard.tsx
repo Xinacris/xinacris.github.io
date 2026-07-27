@@ -23,7 +23,13 @@ export default function ProjectCard({ name, stack, status, url, description }: P
           <span className="text-sm font-bold text-[#e8e5de]">{name}</span>
         )}
         <span className="text-xs text-[#888]">{stack}</span>
-        <span className="text-xs border border-[#3c3d41] px-1.5 text-[#888]">{status}</span>
+        <span
+          className={`text-xs border border-[#3c3d41] px-1.5 ${
+            status === "live" ? "text-[#8fbf8f]" : "text-[#888]"
+          }`}
+        >
+          {status}
+        </span>
       </div>
 
       <div className="bullet-item">
