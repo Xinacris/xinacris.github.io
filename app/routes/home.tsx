@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
-import avatarImage from "../../public/assets/avatar.png";
+
+const avatarImage = "/assets/avatar.png";
 
 export async function clientLoader() {
   const response = await fetch("https://api.github.com/users/xinacris");

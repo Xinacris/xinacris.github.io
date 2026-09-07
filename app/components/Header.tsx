@@ -40,6 +40,14 @@ export default function Header() {
         >
           Projects
         </NavLink>
+        <a
+          href="/Mustafa-Ali-Eren-May26.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-colors text-[#888] hover:text-[#e8e5de]"
+        >
+          CV
+        </a>
       </div>
 
       {/* Mobile toggle */}
@@ -75,6 +83,15 @@ export default function Header() {
           >
             Projects
           </NavLink>
+          <a
+            href="/Mustafa-Ali-Eren-May26.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-1 text-xs tracking-widest uppercase text-[#888] hover:text-[#e8e5de]"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            CV
+          </a>
         </div>
       )}
     </nav>
