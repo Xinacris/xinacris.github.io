@@ -4,12 +4,14 @@ interface ProjectCardProps {
   status: string;
   url?: string;
   description: string;
+  note?: string;
+  credit?: string;
 }
 
-export default function ProjectCard({ name, stack, status, url, description }: ProjectCardProps) {
+export default function ProjectCard({ name, stack, status, url, description, note, credit }: ProjectCardProps) {
   return (
     <div>
-      <div className="flex items-baseline gap-2 mb-1">
+      <div className="flex flex-wrap items-baseline gap-2 mb-1">
         {url ? (
           <a
             href={url}
@@ -35,6 +37,9 @@ export default function ProjectCard({ name, stack, status, url, description }: P
       <div className="bullet-item">
         <span className="text-sm text-[#e8e5de]">{description}</span>
       </div>
+
+      {note && <p className="text-xs text-[#888]">{note}</p>}
+      {credit && <p className="text-[0.65rem] text-[#888] mt-1">{credit}</p>}
     </div>
   );
 }
