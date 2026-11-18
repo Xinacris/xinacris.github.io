@@ -20,8 +20,13 @@ jobs:
           npm install
           npm run build
 
-      - name: Add 404.html
-        run: cp build/client/index.html build/client/404.html
+      - name: Add 404.html and extensionless route files
+        run: |
+          cp build/client/__spa-fallback.html build/client/404.html
+          # Serve /projects from projects.html instead of 301-ing to /projects/
+          for f in build/client/*/index.html; do
+            d=$(dirname "$f"); [ "$(basename "$d")" = assets ] || cp "$f" "$d.html"
+          done
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

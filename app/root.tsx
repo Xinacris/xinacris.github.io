@@ -5,10 +5,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+
+// Canonical origin: the site is also served at xinacris.github.io, which points here.
+const SITE_ORIGIN = "https://mustafalieren.tr";
 
 export const meta: Route.MetaFunction = () => [
   { title: "Mustafa Ali Eren — Frontend Developer" },
@@ -26,7 +30,7 @@ export const meta: Route.MetaFunction = () => [
       "Frontend Developer with 3+ years shipping React + TypeScript across fintech products at Papara. Available for remote or Istanbul-based roles.",
   },
   { property: "og:type", content: "website" },
-  { property: "og:url", content: "https://xinacris.github.io" },
+  { property: "og:url", content: SITE_ORIGIN },
   { name: "twitter:card", content: "summary" },
   { name: "twitter:creator", content: "@zehirlibrowni" },
   { name: "twitter:title", content: "Mustafa Ali Eren — Frontend Developer" },
@@ -53,11 +57,15 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+  const canonicalPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={`${SITE_ORIGIN}${canonicalPath}`} />
         <Meta />
         <Links />
       </head>
