@@ -50,20 +50,45 @@ Personal portfolio website built with modern web technologies, showcasing projec
 
 ## 🚢 Deployment
 
-The project uses **GitHub Actions** to automatically build and deploy to the `gh-pages` branch on every push to `master`.
+The same build is served from two places, with no redirect between them:
 
-### GitHub Pages Setup Instructions:
+| Host | How | Updates on push to `master` |
+| --- | --- | --- |
+| **https://mustafalieren.tr** (canonical) | Coolify on the Oracle server, nginx image from `Dockerfile` + `nginx.conf` | Yes: GitHub webhook → Coolify |
+| https://xinacris.github.io | GitHub Pages, `gh-pages` branch built by `.github/workflows/deploy.yml` | Yes: GitHub Actions |
 
-1.  **Push to Master:** Ensure your latest code is on the `master` branch.
-2.  **Wait for Action:** Go to the **Actions** tab in your repository and wait for the "Deploy to GitHub Pages" workflow to complete.
-3.  **Configure Settings:**
-    -   Go to **Settings** -> **Pages**.
-    -   Under **Build and deployment** > **Branch**, change the branch from `master` to **`gh-pages`**.
-    -   Click **Save**.
-4.  **Visit Site:** Your site will be live at `https://xinacris.github.io` within a minute.
+Every page has `<link rel="canonical" href="https://mustafalieren.tr/<path>">` (`app/root.tsx`), so search
+engines treat mustafalieren.tr as the primary copy. All routes are prerendered (`react-router.config.ts`),
+so each page has its own HTML; unknown paths get `__spa-fallback.html` with a 404 status
+(nginx `error_page`, and `404.html` on Pages).
 
-> [!TIP]
-> Since this is a Single Page Application (SPA), the deployment automatically includes a `404.html` fallback to support direct navigation to sub-pages like `/about`.
+### mustafalieren.tr (Coolify)
+
+- **Panel:** https://panel.mustafalieren.tr (2FA on). Ports 8000/6001/6002 are blocked from outside
+  (iptables `DOCKER-USER`); the panel is only reachable through the domain or an SSH tunnel:
+  `ssh -N -L 8000:127.0.0.1:8000 -L 6001:127.0.0.1:6001 -L 6002:127.0.0.1:6002 ubuntu@158.180.42.168`
+- **App:** project `selfhost` → `production` → `portfolio`, branch `master`, build pack Dockerfile, port 80.
+  Domains `https://mustafalieren.tr`, `https://www.mustafalieren.tr` (www → apex, 301). Let's Encrypt via
+  the Coolify proxy; HTTP → HTTPS is a 301 and HSTS (1 year) is set for every domain on the server.
+- **Redeploy:** automatic on every push to `master` (repo webhook → `https://panel.mustafalieren.tr/webhooks/source/github/events/manual`).
+  Manually: panel → portfolio → **Redeploy**, or `POST /api/v1/deploy` with `{"uuid":"4wfjyo5u5ff9osyhsl4ksspv"}`.
+- **Readonly labels are OFF for this app.** Coolify's www → apex redirect is a 302 by default; the
+  container labels were edited to make it a 301 (`...to-non-www.redirectregex.permanent=true`), and
+  "Readonly labels" was turned off so Coolify keeps that edit. Consequence: changing the domains or the
+  redirect setting in the panel does **not** update the routing labels anymore. After such a change, edit
+  the labels (panel → portfolio → Configuration → General → Container Labels) by hand, or turn readonly labels back on
+  (the redirect goes back to 302) and redeploy.
+- **Proxy customizations** (`/data/coolify/proxy/`, outside the app): entrypoint HTTP → HTTPS permanent
+  redirect and `hsts@file` middleware in `docker-compose.yml`, `dynamic/hsts.yaml`. "Reset proxy
+  configuration" in the panel removes them. If you restart the proxy by hand, use the panel's
+  **Restart Proxy** (it reconnects the proxy to every resource network); a plain
+  `docker compose up --force-recreate` leaves Supabase unreachable until `docker network connect`.
+
+### xinacris.github.io (GitHub Pages)
+
+No custom domain, no `CNAME` file. Settings → Pages → Branch must be **`gh-pages`**. The workflow copies
+`__spa-fallback.html` to `404.html` and writes `<route>.html` next to each `<route>/index.html`, so
+`/projects` is served directly without a trailing-slash redirect.
 
 ---
 
